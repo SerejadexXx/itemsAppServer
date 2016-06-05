@@ -13,7 +13,7 @@ var transporter = nodemailer.createTransport({
 });
 
 module.exports = {
-    createTo: function(__dirname, data, accessCode) {
+    createTo: function(__dirname, data, accessCode, email) {
         var ItemImageColSize = 5;
         var ItemImageRowSize = 12;
         var MaxPerRow = 10;
@@ -227,9 +227,9 @@ module.exports = {
                 fs.readFile('./data/' + accessCode + '/ExcelFile.xlsx', function (err, data) {
                     transporter.sendMail({
                         sender: 'testLacostApp@mail.ru',
-                        to: 'testLacostApp@mail.ru',
+                        to: email,
                         subject: 'Attachment!',
-                        body: 'mail content...',
+                        body: 'Selected data here.',
                         attachments: [{'filename': 'data.xlsx', 'content': data}]
                     }, function (err, success) {
                         if (err) {

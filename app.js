@@ -24,7 +24,7 @@ app.post('/api/gen', function(req, res) {
   var email = body.email;
   var data = body.data;
 
-  creator.createTo(__dirname, data, accessCode);
+  creator.createTo(__dirname, data, accessCode, email);
 
   res.sendStatus(200);
 });
