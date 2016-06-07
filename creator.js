@@ -14,6 +14,12 @@ var transporter = nodemailer.createTransport({
 
 module.exports = {
     createTo: function(__dirname, data, accessCode, email) {
+        fs.writeFile('./data/' + accessCode + '/attempt_at_' +Date.now()+'.txt', data ,function(err){
+            if(err){
+                console.log("error is: " + err);
+            }
+        });
+
         var ItemImageColSize = 5;
         var ItemImageRowSize = 12;
         var MaxPerRow = 10;
@@ -62,7 +68,8 @@ module.exports = {
                 sheets[fItem.gender].cell(fRow + ItemImageRowSize + 2, 1).string('Color Name');
                 sheets[fItem.gender].cell(fRow + ItemImageRowSize + 3, 1).string('Color Code');
                 sheets[fItem.gender].cell(fRow + ItemImageRowSize + 4, 1).string('Code+Color');
-                sheets[fItem.gender].cell(fRow + ItemImageRowSize + 5, 1).string('Order');
+                sheets[fItem.gender].cell(fRow + ItemImageRowSize + 5, 1).string('Material');
+                sheets[fItem.gender].cell(fRow + ItemImageRowSize + 6, 1).string('Order');
                 info[fItem.gender].lastRowCurrentCol++;
             }
 
@@ -70,6 +77,10 @@ module.exports = {
             var lastCol = firstCol;
 
             colors.forEach(function(item) {
+                if (!item.quantity || isNaN(item.quantity)) {
+                    return;
+                }
+
                 var currentRow = info[item.gender].currentRow;
                 var currentCol = info[item.gender].lastRowCurrentCol;
 
@@ -148,9 +159,6 @@ module.exports = {
                     })
                     .string(item.material);
 
-                if (!item.quantity || isNaN(item.quantity)) {
-                    item.quantity = 0;
-                }
                 sheets[item.gender]
                     .cell(
                         currentRow + ItemImageRowSize + 6, currentCol,
