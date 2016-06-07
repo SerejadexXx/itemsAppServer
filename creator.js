@@ -14,7 +14,7 @@ var transporter = nodemailer.createTransport({
 
 module.exports = {
     createTo: function(__dirname, data, accessCode, email) {
-        fs.writeFile('./data/' + accessCode + '/attempt_at_' +Date.now()+'.txt', data ,function(err){
+        fs.writeFile('./data/' + accessCode + '/attempt_at_' +Date.now()+'.txt', JSON.stringify(data) ,function(err){
             if(err){
                 console.log("error is: " + err);
             }
