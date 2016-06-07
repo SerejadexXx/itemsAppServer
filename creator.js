@@ -147,6 +147,10 @@ module.exports = {
                         }
                     })
                     .string(item.material);
+
+                if (!item.quantity || isNaN(item.quantity)) {
+                    item.quantity = 0;
+                }
                 sheets[item.gender]
                     .cell(
                         currentRow + ItemImageRowSize + 6, currentCol,
