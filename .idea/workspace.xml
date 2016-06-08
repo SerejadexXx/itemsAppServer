@@ -26,9 +26,11 @@
       <file leaf-file-name="creator.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/creator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.82758623">
-              <caret line="60" column="19" selection-start-line="60" selection-start-column="19" selection-end-line="60" selection-end-column="19" />
-              <folding />
+            <state vertical-scroll-proportion="0.4">
+              <caret line="259" column="21" selection-start-line="259" selection-start-column="21" selection-end-line="259" selection-end-column="21" />
+              <folding>
+                <element signature="e#1291#1884#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -197,7 +199,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#1291#1884#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -213,7 +217,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#1291#1884#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -235,9 +241,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/creator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.82758623">
-          <caret line="60" column="19" selection-start-line="60" selection-start-column="19" selection-end-line="60" selection-end-column="19" />
-          <folding />
+        <state vertical-scroll-proportion="0.4">
+          <caret line="259" column="21" selection-start-line="259" selection-start-column="21" selection-end-line="259" selection-end-column="21" />
+          <folding>
+            <element signature="e#1291#1884#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
