@@ -216,6 +216,33 @@ module.exports = {
 
             sheets[fItem.gender]
                 .cell(
+                    fRow, firstCol,
+                    fRow + ItemImageRowSize + 8, lastCol,
+                    true
+                )
+                .style({
+                    border: {
+                        left: {
+                            style: 'medium',
+                            color: '#000000'
+                        },
+                        right: {
+                            style: 'medium',
+                            color: '#000000'
+                        },
+                        top: {
+                            style: 'medium',
+                            color: '#000000'
+                        },
+                        bottom: {
+                            style: 'medium',
+                            color: '#000000'
+                        }
+                    }
+                });
+
+            sheets[fItem.gender]
+                .cell(
                     fRow + ItemImageRowSize, firstCol,
                     fRow + ItemImageRowSize, lastCol,
                     true
@@ -255,33 +282,6 @@ module.exports = {
                     }
                 })
                 .string(GetFormattedComments(fItem.code));
-
-            sheets[fItem.gender]
-                .cell(
-                    fRow, firstCol,
-                    fRow + ItemImageRowSize + 8, lastCol,
-                    true
-                )
-                .style({
-                    border: {
-                        left: {
-                            style: 'medium',
-                            color: '#000000'
-                        },
-                        right: {
-                            style: 'medium',
-                            color: '#000000'
-                        },
-                        top: {
-                            style: 'medium',
-                            color: '#000000'
-                        },
-                        bottom: {
-                            style: 'medium',
-                            color: '#000000'
-                        }
-                    }
-                });
 
 
             //info[fItem.gender].currentCol ++;
