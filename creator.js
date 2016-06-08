@@ -207,7 +207,7 @@ module.exports = {
                             horizontal: 'center'
                         }
                     })
-                    .number(item.price.toString());
+                    .string(item.price.toString());
 
                 lastCol = currentCol+ ItemImageColSize - 1;
                 info[item.gender].lastRowItemsCount++;
