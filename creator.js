@@ -59,6 +59,7 @@ module.exports = {
                         rez += '\n\n' + text;
                     }
                 });
+                console.log(rez);
                 return rez;
             }
         };
