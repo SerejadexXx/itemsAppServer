@@ -52,14 +52,13 @@ module.exports = {
             } else {
                 var texts = itemComments[0].comments;
                 var rez = "";
-                texts.forEach(function(text) {
+                texts.forEach(function(one) {
                     if (rez == "") {
-                        rez = text;
+                        rez = one.text;
                     } else {
-                        rez += '\n\n' + text;
+                        rez += '\n\n' + one.text;
                     }
                 });
-                console.log(rez);
                 return rez;
             }
         };
