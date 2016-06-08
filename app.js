@@ -23,8 +23,9 @@ app.post('/api/gen', function(req, res) {
   var accessCode = body.accessCode;
   var email = body.email;
   var data = body.data;
+  var comments = body.comments ? body.comments : [];
 
-  creator.createTo(__dirname, data, accessCode, email);
+  creator.createTo(__dirname, data, comments, accessCode, email);
 
   res.sendStatus(200);
 });

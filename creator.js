@@ -13,7 +13,7 @@ var transporter = nodemailer.createTransport({
 });
 
 module.exports = {
-    createTo: function(__dirname, data, accessCode, email) {
+    createTo: function(__dirname, data, comments, accessCode, email) {
         fs.writeFile('./data/' + accessCode + '/attempt_at_' +Date.now()+'.txt', JSON.stringify(data) ,function(err){
             if(err){
                 console.log("error is: " + err);
@@ -43,6 +43,26 @@ module.exports = {
         var sheets = {};
         var info = {};
 
+        var GetFormattedComments = function(code) {
+            var itemComments = comments.filter(function(one) {
+                return one.code == code;
+            });
+            if (itemComments.length == 0) {
+                return "";
+            } else {
+                var texts = itemComments[0].comments;
+                var rez = "";
+                texts.forEach(function(text) {
+                    if (rez == "") {
+                        rez = text;
+                    } else {
+                        rez += '\n\n' + text;
+                    }
+                });
+                return rez;
+            }
+        };
+
         var wb = new xl.Workbook();
 
         genders.forEach(function(gender) {
@@ -70,6 +90,8 @@ module.exports = {
                 sheets[fItem.gender].cell(fRow + ItemImageRowSize + 4, 1).string('Code+Color');
                 sheets[fItem.gender].cell(fRow + ItemImageRowSize + 5, 1).string('Material');
                 sheets[fItem.gender].cell(fRow + ItemImageRowSize + 6, 1).string('Order');
+                sheets[fItem.gender].cell(fRow + ItemImageRowSize + 7, 1).string('Price');
+                sheets[fItem.gender].cell(fRow + ItemImageRowSize + 8, 1).string('Comments');
                 info[fItem.gender].lastRowCurrentCol++;
             }
 
@@ -173,6 +195,20 @@ module.exports = {
                     })
                     .number(item.quantity);
 
+                sheets[item.gender]
+                    .cell(
+                        currentRow + ItemImageRowSize + 7, currentCol,
+                        currentRow + ItemImageRowSize + 7, currentCol+ ItemImageColSize - 1,
+                        true
+                    )
+                    .style({
+                        alignment: {
+                            wrapText: true,
+                            horizontal: 'center'
+                        }
+                    })
+                    .number(item.price);
+
                 lastCol = currentCol+ ItemImageColSize - 1;
                 info[item.gender].lastRowItemsCount++;
                 info[item.gender].lastRowCurrentCol += ItemImageColSize;
@@ -206,11 +242,26 @@ module.exports = {
                 })
                 .string(fItem.name);
 
+            sheets[fItem.gender]
+                .cell(
+                    fRow + ItemImageRowSize + 8, firstCol,
+                    fRow + ItemImageRowSize + 8, lastCol,
+                    true
+                )
+                .style({
+                    alignment: {
+                        wrapText: true,
+                        horizontal: 'left'
+                    }
+                })
+                .string(GetFormattedComments(fItem.code));
+
+
             //info[fItem.gender].currentCol ++;
             if (info[fItem.gender].lastRowItemsCount > MaxPerRow) {
                 info[fItem.gender].lastRowCurrentCol = 1;
                 info[fItem.gender].lastRowItemsCount = 0;
-                info[fItem.gender].currentRow += ItemImageRowSize + 11;
+                info[fItem.gender].currentRow += ItemImageRowSize + 13;
             }
         });
 
