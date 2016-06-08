@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="87f705cf-28c1-46f6-a615-6abe9ab5748a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/creator.js" afterPath="$PROJECT_DIR$/creator.js" />
     </list>
     <ignored path="itemsAppServer.iws" />
@@ -27,8 +26,8 @@
       <file leaf-file-name="creator.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/creator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.2068965">
-              <caret line="93" column="90" selection-start-line="93" selection-start-column="90" selection-end-line="93" selection-end-column="90" />
+            <state vertical-scroll-proportion="0.8137931">
+              <caret line="209" column="38" selection-start-line="209" selection-start-column="38" selection-end-line="209" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -236,8 +235,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/creator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2068965">
-          <caret line="93" column="90" selection-start-line="93" selection-start-column="90" selection-end-line="93" selection-end-column="90" />
+        <state vertical-scroll-proportion="0.8137931">
+          <caret line="209" column="38" selection-start-line="209" selection-start-column="38" selection-end-line="209" selection-end-column="38" />
           <folding />
         </state>
       </provider>
