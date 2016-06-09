@@ -44,6 +44,9 @@ module.exports = {
         var info = {};
 
         var GetFormattedComments = function(code) {
+            if (!comments) {
+                return "";
+            }
             var itemComments = comments.filter(function(one) {
                 return one.code == code;
             });
@@ -101,6 +104,10 @@ module.exports = {
             colors.forEach(function(item) {
                 if (!item.quantity || isNaN(item.quantity)) {
                     return;
+                }
+
+                if (!item.price || isNaN(item.price)) {
+                    item.price = 0;
                 }
 
                 var currentRow = info[item.gender].currentRow;
