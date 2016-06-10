@@ -14,11 +14,16 @@ var transporter = nodemailer.createTransport({
 
 module.exports = {
     createTo: function(__dirname, data, comments, accessCode, email) {
-        fs.writeFile('./data/' + accessCode + '/attempt_at_' +Date.now()+'.txt', JSON.stringify(data) ,function(err){
-            if(err){
-                console.log("error is: " + err);
-            }
-        });
+            fs.writeFile('./data/' + accessCode + '/attempt_at_' + Date.now() + '.txt', JSON.stringify(data), function (err) {
+                if (err) {
+                    console.log("error is: " + err);
+                }
+            });
+            fs.writeFile('./data/' + accessCode + '/attempt_com_at_' + Date.now() + '.txt', JSON.stringify(comments), function (err) {
+                if (err) {
+                    console.log("error is: " + err);
+                }
+            });
 
         var ItemImageColSize = 5;
         var ItemImageRowSize = 12;
