@@ -3,12 +3,12 @@ var fs = require('fs');
 var nodemailer = require('nodemailer');
 
 var transporter = nodemailer.createTransport({
-    host: 'smtp.mail.ru',
+    host: 'webmail.superonlinehosting.net',
     port: 465,
     secure: true, // use SSL
     auth: {
-        user: 'testLacostApp@mail.ru',
-        pass: '40049513579A'
+        user: 'orders@lacoste.ua',
+        pass: 'lacosteORD!'
     }
 });
 
@@ -301,7 +301,7 @@ module.exports = {
             function() {
                 fs.readFile('./data/' + accessCode + '/ExcelFile.xlsx', function (err, data) {
                     transporter.sendMail({
-                        sender: 'testLacostApp@mail.ru',
+                        sender: 'orders@lacoste.ua',
                         to: email,
                         subject: 'Attachment!',
                         body: 'Selected data here.',
