@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="87f705cf-28c1-46f6-a615-6abe9ab5748a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/creator.js" afterPath="$PROJECT_DIR$/creator.js" />
-    </list>
+    <list default="true" id="87f705cf-28c1-46f6-a615-6abe9ab5748a" name="Default" comment="" />
     <ignored path="itemsAppServer.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,8 +24,8 @@
       <file leaf-file-name="creator.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/creator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.475862">
-              <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.6896552">
+              <caret line="309" column="34" selection-start-line="309" selection-start-column="34" selection-end-line="309" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -255,8 +253,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/creator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.475862">
-          <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.6896552">
+          <caret line="309" column="34" selection-start-line="309" selection-start-column="34" selection-end-line="309" selection-end-column="34" />
           <folding />
         </state>
       </provider>
