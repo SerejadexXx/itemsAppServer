@@ -270,7 +270,7 @@ module.exports = {
 
 
             //info[fItem.gender].currentCol ++;
-            if (info[fItem.gender].lastRowItemsCount > MaxPerRow) {
+            if (info[fItem.gender].lastRowItemsCount >= MaxPerRow) {
                 info[fItem.gender].lastRowCurrentCol = 1;
                 info[fItem.gender].lastRowItemsCount = 0;
                 info[fItem.gender].currentRow += ItemImageRowSize + 13;
