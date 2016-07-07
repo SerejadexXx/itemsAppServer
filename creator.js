@@ -263,7 +263,7 @@ module.exports = {
                 .style({
                     alignment: {
                         wrapText: true,
-                        horizontal: 'left'
+                        horizontal: 'center'
                     }
                 })
                 .string(GetFormattedComments(fItem.code));
