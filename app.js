@@ -22,10 +22,11 @@ app.post('/api/gen', function(req, res) {
   var body = req.body;
   var accessCode = body.accessCode;
   var email = body.email;
+  var name = body.name ? body.name : 'Order';
   var data = body.data;
   var comments = body.comments ? body.comments : [];
 
-  creator.createTo(__dirname, data, comments, accessCode, email);
+  creator.createTo(__dirname, data, comments, accessCode, email, name);
 
   res.sendStatus(200);
 });

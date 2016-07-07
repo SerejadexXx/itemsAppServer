@@ -13,7 +13,7 @@ var transporter = nodemailer.createTransport({
 });
 
 module.exports = {
-    createTo: function(__dirname, data, comments, accessCode, email) {
+    createTo: function(__dirname, data, comments, accessCode, email, name) {
             fs.writeFile('./data/' + accessCode + '/attempt_at_' + Date.now() + '.txt', JSON.stringify(data), function (err) {
                 if (err) {
                     console.log("error is: " + err);
@@ -238,7 +238,7 @@ module.exports = {
                         horizontal: 'center'
                     }
                 })
-                .string(fItem.code);
+                .string(fItem.name);
 
             sheets[fItem.gender]
                 .cell(
@@ -252,7 +252,7 @@ module.exports = {
                         horizontal: 'center'
                     }
                 })
-                .string(fItem.name);
+                .string(fItem.code);
 
             sheets[fItem.gender]
                 .cell(
@@ -303,9 +303,9 @@ module.exports = {
                     transporter.sendMail({
                         sender: 'testLacostApp@mail.ru',
                         to: email,
-                        subject: 'Attachment!',
-                        body: 'Selected data here.',
-                        attachments: [{'filename': 'data.xlsx', 'content': data}]
+                        subject: name,
+                        body: 'Order',
+                        attachments: [{'filename': name + '.xlsx', 'content': data}]
                     }, function (err, success) {
                         if (err) {
                             console.log(err);
