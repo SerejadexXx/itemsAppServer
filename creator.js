@@ -1,6 +1,7 @@
 var xl = require('excel4node');
 var fs = require('fs');
 var nodemailer = require('nodemailer');
+var imageService = require('images');
 
 var transporter = nodemailer.createTransport({
     host: 'smtp.mail.ru',
@@ -47,6 +48,28 @@ module.exports = {
 
         var sheets = {};
         var info = {};
+
+        var convertImage = function(path, name) {
+            var saveUrl = path + 'temp_' + name;
+            try {
+                fs.accessSync(saveUrl, fs.F_OK);
+                // Do something
+            } catch (e) {
+                var image = imageService(path, path + name);
+                var width = image.width();
+                var height = image.height();
+                var size = Math.max(width, height);
+                var rezImage = imageService(size, size);
+                rezImage.draw(image, Math.floor(size / 2 - width / 2), Math.floor(size / 2 - height / 2));
+                rezImage.save(
+                    saveUrl,
+                    {
+                        quality: 100
+                    }
+                );
+            }
+            return saveUrl;
+        };
 
         var GetFormattedComments = function(code) {
             if (!comments) {
@@ -123,8 +146,10 @@ module.exports = {
                 //console.log(currentRow + " " + currentCol);
                 //console.log((currentRow + ItemImageRowSize) + " " + (currentCol + ItemImageColSize));
 
+                var imgUrl = convertImage(__dirname + '/data/' + accessCode + '/', item.url);
+
                 sheets[item.gender].addImage({
-                    path: __dirname + '/data/' + accessCode + '/' +item.url,
+                    path: imgUrl,
                     type: 'picture',
                     position: {
                         type: 'twoCellAnchor',
