@@ -55,7 +55,7 @@ module.exports = {
                 fs.accessSync(saveUrl, fs.F_OK);
                 // Do something
             } catch (e) {
-                var image = imageService(path, path + name);
+                var image = imageService(path + name);
                 var width = image.width();
                 var height = image.height();
                 var size = Math.max(width, height);
