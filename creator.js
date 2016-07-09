@@ -2,6 +2,7 @@ var xl = require('excel4node');
 var fs = require('fs');
 var nodemailer = require('nodemailer');
 var imageService = require('images');
+var pathService = require('path');
 
 var transporter = nodemailer.createTransport({
     host: 'smtp.mail.ru',
@@ -49,11 +50,10 @@ module.exports = {
         var sheets = {};
         var info = {};
 
-        var convertImage = function(path, name) {
-            var saveUrl = path + 'temp_' + name;
+        var convertImage = function(path) {
+            var saveUrl = pathService.dirname(path) + '/squared_' + pathService.basename(path);
             try {
                 fs.accessSync(saveUrl, fs.F_OK);
-                // Do something
             } catch (e) {
                 var image = imageService(path + name);
                 var width = image.width();
@@ -146,7 +146,7 @@ module.exports = {
                 //console.log(currentRow + " " + currentCol);
                 //console.log((currentRow + ItemImageRowSize) + " " + (currentCol + ItemImageColSize));
 
-                var imgUrl = convertImage(__dirname + '/data/' + accessCode + '/', item.url);
+                var imgUrl = convertImage(__dirname + '/data/' + accessCode + '/' + item.url);
 
                 sheets[item.gender].addImage({
                     path: imgUrl,
