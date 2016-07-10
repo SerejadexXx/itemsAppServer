@@ -152,7 +152,7 @@ module.exports = {
                     sheets[item.gender].row(iRow).setHeight(20);
                 }
                 for (var iCol = currentCol; iCol <= currentCol + ItemImageColSize - 1; iCol++) {
-                    sheets[item.gender].col(iCol).setWidth(40);
+                    sheets[item.gender].column(iCol).setWidth(40);
                 }
 
                 sheets[item.gender].addImage({
