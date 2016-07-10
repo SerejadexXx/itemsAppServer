@@ -327,25 +327,25 @@ module.exports = {
         });
         */
 
-        wb.write('./data/' + accessCode + '/ExcelFile.xlsx');
-
-        setTimeout(
-            function() {
-                fs.readFile('./data/' + accessCode + '/ExcelFile.xlsx', function (err, data) {
-                    transporter.sendMail({
-                        sender: 'testLacostApp@mail.ru',
-                        to: email,
-                        subject: name,
-                        body: 'Order',
-                        attachments: [{'filename': name + '.xlsx', 'content': data}]
-                    }, function (err, success) {
-                        if (err) {
-                            console.log(err);
-                        }
-
-                    });
-                });
+        wb.write('./data/' + accessCode + '/ExcelFile.xlsx', function(err, stats) {
+            if (err) {
+                console.log(err);
+                return;
             }
-            ,5000);
+            fs.readFile('./data/' + accessCode + '/ExcelFile.xlsx', function (err, data) {
+                transporter.sendMail({
+                    sender: 'testLacostApp@mail.ru',
+                    to: email,
+                    subject: name,
+                    body: 'Order',
+                    attachments: [{'filename': name + '.xlsx', 'content': data}]
+                }, function (err, success) {
+                    if (err) {
+                        console.log(err);
+                    }
+
+                });
+            });
+        });
     }
 };
