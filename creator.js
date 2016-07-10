@@ -148,6 +148,13 @@ module.exports = {
 
                 var imgUrl = convertImage(__dirname + '/data/' + accessCode + '/' + item.url);
 
+                for (var iRow = currentRow; iRow <= currentRow + ItemImageRowSize - 1; iRow++) {
+                    sheets[item.gender].row(iRow).setHeight(20);
+                }
+                for (var iCol = currentCol; iCol <= currentCol + ItemImageColSize - 1; iCol++) {
+                    sheets[item.gender].col(iCol).setWidth(40);
+                }
+
                 sheets[item.gender].addImage({
                     path: imgUrl,
                     type: 'picture',
