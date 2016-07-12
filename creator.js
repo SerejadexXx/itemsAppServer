@@ -52,22 +52,23 @@ module.exports = {
 
         var convertImage = function(path) {
             var saveUrl = pathService.dirname(path) + '/squared_' + pathService.basename(path);
-            try {
+            /*try {
                 fs.accessSync(saveUrl, fs.F_OK);
-            } catch (e) {
+            } catch (e) {*/
                 var image = imageService(path);
                 var width = image.width();
                 var height = image.height();
                 var size = Math.max(width, height);
                 var rezImage = imageService(size, size);
                 rezImage.draw(image, Math.floor(size / 2 - width / 2), Math.floor(size / 2 - height / 2));
+                rezImage.resize(200, 200);
                 rezImage.save(
                     saveUrl,
                     {
                         quality: 100
                     }
                 );
-            }
+            //}
             return saveUrl;
         };
 
