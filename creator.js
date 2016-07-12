@@ -152,15 +152,10 @@ module.exports = {
                     path: imgUrl,
                     type: 'picture',
                     position: {
-                        type: 'twoCellAnchor',
+                        type: 'oneCellAnchor',
                         from: {
                             col: currentCol,
                             row: currentRow,
-                            colOff: '0.5in'
-                        },
-                        to: {
-                            col: currentCol + ItemImageColSize - 1,
-                            row: currentRow + ItemImageRowSize - 2,
                             colOff: '0.5in'
                         }
                     }
