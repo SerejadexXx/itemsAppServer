@@ -117,9 +117,9 @@ module.exports = {
             if (info[fItem.gender].lastRowCurrentCol == 1) {
                 sheets[fItem.gender].cell(fRow + ItemImageRowSize, 1).string('Name');
                 sheets[fItem.gender].cell(fRow + ItemImageRowSize + 1, 1).string('Code');
-                sheets[fItem.gender].cell(fRow + ItemImageRowSize + 2, 1).string('Color Name');
-                sheets[fItem.gender].cell(fRow + ItemImageRowSize + 3, 1).string('Color Code');
-                sheets[fItem.gender].cell(fRow + ItemImageRowSize + 4, 1).string('Code+Color');
+                sheets[fItem.gender].cell(fRow + ItemImageRowSize + 2, 1).string('Color Code');
+                sheets[fItem.gender].cell(fRow + ItemImageRowSize + 3, 1).string('Color Name');
+                sheets[fItem.gender].cell(fRow + ItemImageRowSize + 4, 1).string('Code+Color Code');
                 sheets[fItem.gender].cell(fRow + ItemImageRowSize + 5, 1).string('Material');
                 sheets[fItem.gender].cell(fRow + ItemImageRowSize + 6, 1).string('Order');
                 sheets[fItem.gender].cell(fRow + ItemImageRowSize + 7, 1).string('Price');
