@@ -31,6 +31,28 @@ module.exports = {
         var ItemImageRowSize = 12;
         var MaxPerRow = 10;
 
+        var pageNums = [];
+        var GetPageNum = function(item) {
+            var val = "";
+            if (item.typeName) {
+                val += item.typeName;
+            }
+            if (item.gender) {
+                if (val == "") {
+                    val += item.gender;
+                } else {
+                    val += " " + item.gender;
+                }
+            }
+            return val;
+        };
+        data.forEach(function(item) {
+                var val = GetPageNum(item);
+                if (pageNums.indexOf(val) < 0) {
+                    pageNums.push(val);
+                }
+            });
+
         var genders = [];
         data.map(function(item) {return item.gender;})
             .forEach(function(gender) {
@@ -97,9 +119,9 @@ module.exports = {
 
         var wb = new xl.Workbook();
 
-        genders.forEach(function(gender) {
-            sheets[gender] = wb.addWorksheet(gender);
-            info[gender] = {
+        pageNums.forEach(function(pageNum) {
+            sheets[pageNum] = wb.addWorksheet(pageNum);
+            info[pageNum] = {
                 lastRowItemsCount: 0,
                 lastRowCurrentCol: 1,
                 currentRow: 1
@@ -112,22 +134,23 @@ module.exports = {
             });
 
             var fItem = colors[0];
-            var fRow =info[fItem.gender].currentRow;
+            var pageNum = GetPageNum(fItem);
+            var fRow =info[pageNum].currentRow;
 
-            if (info[fItem.gender].lastRowCurrentCol == 1) {
-                sheets[fItem.gender].cell(fRow + ItemImageRowSize, 1).string('Name');
-                sheets[fItem.gender].cell(fRow + ItemImageRowSize + 1, 1).string('Code');
-                sheets[fItem.gender].cell(fRow + ItemImageRowSize + 2, 1).string('Color Code');
-                sheets[fItem.gender].cell(fRow + ItemImageRowSize + 3, 1).string('Color Name');
-                sheets[fItem.gender].cell(fRow + ItemImageRowSize + 4, 1).string('Code+Color Code');
-                sheets[fItem.gender].cell(fRow + ItemImageRowSize + 5, 1).string('Material');
-                sheets[fItem.gender].cell(fRow + ItemImageRowSize + 6, 1).string('Order');
-                sheets[fItem.gender].cell(fRow + ItemImageRowSize + 7, 1).string('Price');
-                sheets[fItem.gender].cell(fRow + ItemImageRowSize + 8, 1).string('Comments');
-                info[fItem.gender].lastRowCurrentCol++;
+            if (info[pageNum].lastRowCurrentCol == 1) {
+                sheets[pageNum].cell(fRow + ItemImageRowSize, 1).string('Name');
+                sheets[pageNum].cell(fRow + ItemImageRowSize + 1, 1).string('Code');
+                sheets[pageNum].cell(fRow + ItemImageRowSize + 2, 1).string('Color Code');
+                sheets[pageNum].cell(fRow + ItemImageRowSize + 3, 1).string('Color Name');
+                sheets[pageNum].cell(fRow + ItemImageRowSize + 4, 1).string('Code+Color Code');
+                sheets[pageNum].cell(fRow + ItemImageRowSize + 5, 1).string('Material');
+                sheets[pageNum].cell(fRow + ItemImageRowSize + 6, 1).string('Order');
+                sheets[pageNum].cell(fRow + ItemImageRowSize + 7, 1).string('Price');
+                sheets[pageNum].cell(fRow + ItemImageRowSize + 8, 1).string('Comments');
+                info[pageNum].lastRowCurrentCol++;
             }
 
-            var firstCol = info[fItem.gender].lastRowCurrentCol;
+            var firstCol = info[pageNum].lastRowCurrentCol;
             var lastCol = firstCol;
 
             colors.forEach(function(item) {
@@ -139,8 +162,10 @@ module.exports = {
                     item.price = 0;
                 }
 
-                var currentRow = info[item.gender].currentRow;
-                var currentCol = info[item.gender].lastRowCurrentCol;
+                var pageNum = GetPageNum(item);
+
+                var currentRow = info[pageNum].currentRow;
+                var currentCol = info[pageNum].lastRowCurrentCol;
 
                 //console.log(item.code);
                 //console.log(item.gender);
@@ -149,7 +174,7 @@ module.exports = {
 
                 var imgUrl = convertImage(__dirname + '/data/' + accessCode + '/' + item.url);
 
-                sheets[item.gender].addImage({
+                sheets[pageNum].addImage({
                     path: imgUrl,
                     type: 'picture',
                     position: {
@@ -161,7 +186,7 @@ module.exports = {
                         }
                     }
                 });
-                sheets[item.gender]
+                sheets[pageNum]
                     .cell(
                         currentRow + ItemImageRowSize + 2, currentCol,
                         currentRow + ItemImageRowSize + 2, currentCol+ ItemImageColSize - 1,
@@ -174,7 +199,7 @@ module.exports = {
                         }
                     })
                     .string(item.colorCode);
-                sheets[item.gender]
+                sheets[pageNum]
                     .cell(
                         currentRow + ItemImageRowSize + 3, currentCol,
                         currentRow + ItemImageRowSize + 3, currentCol+ ItemImageColSize - 1,
@@ -187,7 +212,7 @@ module.exports = {
                         }
                     })
                     .string(item.colorDesc);
-                sheets[item.gender]
+                sheets[pageNum]
                     .cell(
                         currentRow + ItemImageRowSize + 4, currentCol,
                         currentRow + ItemImageRowSize + 4, currentCol+ ItemImageColSize - 1,
@@ -200,7 +225,7 @@ module.exports = {
                         }
                     })
                     .string(item.code + item.colorCode);
-                sheets[item.gender]
+                sheets[pageNum]
                     .cell(
                         currentRow + ItemImageRowSize + 5, currentCol,
                         currentRow + ItemImageRowSize + 5, currentCol+ ItemImageColSize - 1,
@@ -214,7 +239,7 @@ module.exports = {
                     })
                     .string(item.material);
 
-                sheets[item.gender]
+                sheets[pageNum]
                     .cell(
                         currentRow + ItemImageRowSize + 6, currentCol,
                         currentRow + ItemImageRowSize + 6, currentCol+ ItemImageColSize - 1,
@@ -228,7 +253,7 @@ module.exports = {
                     })
                     .number(item.quantity);
 
-                sheets[item.gender]
+                sheets[pageNum]
                     .cell(
                         currentRow + ItemImageRowSize + 7, currentCol,
                         currentRow + ItemImageRowSize + 7, currentCol+ ItemImageColSize - 1,
@@ -243,11 +268,11 @@ module.exports = {
                     .string(item.price.toString());
 
                 lastCol = currentCol+ ItemImageColSize - 1;
-                info[item.gender].lastRowItemsCount++;
-                info[item.gender].lastRowCurrentCol += ItemImageColSize;
+                info[pageNum].lastRowItemsCount++;
+                info[pageNum].lastRowCurrentCol += ItemImageColSize;
             });
 
-            sheets[fItem.gender]
+            sheets[pageNum]
                 .cell(
                     fRow + ItemImageRowSize, firstCol,
                     fRow + ItemImageRowSize, lastCol,
@@ -261,7 +286,7 @@ module.exports = {
                 })
                 .string(fItem.name);
 
-            sheets[fItem.gender]
+            sheets[pageNum]
                 .cell(
                     fRow + ItemImageRowSize + 1, firstCol,
                     fRow + ItemImageRowSize + 1, lastCol,
@@ -275,7 +300,7 @@ module.exports = {
                 })
                 .string(fItem.code);
 
-            sheets[fItem.gender]
+            sheets[pageNum]
                 .cell(
                     fRow + ItemImageRowSize + 8, firstCol,
                     fRow + ItemImageRowSize + 8, lastCol,
@@ -291,10 +316,10 @@ module.exports = {
 
 
             //info[fItem.gender].currentCol ++;
-            if (info[fItem.gender].lastRowItemsCount >= MaxPerRow) {
-                info[fItem.gender].lastRowCurrentCol = 1;
-                info[fItem.gender].lastRowItemsCount = 0;
-                info[fItem.gender].currentRow += ItemImageRowSize + 13;
+            if (info[pageNum].lastRowItemsCount >= MaxPerRow) {
+                info[pageNum].lastRowCurrentCol = 1;
+                info[pageNum].lastRowItemsCount = 0;
+                info[pageNum].currentRow += ItemImageRowSize + 13;
             }
         });
 
