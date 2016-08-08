@@ -82,6 +82,7 @@ module.exports = {
                 var height = image.height();
                 var size = Math.max(width, height);
                 var rezImage = imageService(size, size);
+                rezImage.fill(0xff, 0xff, 0xff, 1);
                 rezImage.draw(image, Math.floor(size / 2 - width / 2), Math.floor(size / 2 - height / 2));
                 rezImage.resize(200, 200);
                 rezImage.save(
